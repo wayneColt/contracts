@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/wayneColt/wcm-contracts/voice-missed-booking/out.schema.json",
+  "$id": "https://github.com/wayneColt/contracts/voice-missed-booking/out.schema.json",
   "title": "voice-missed-booking · output · one grade",
   "type": "object",
   "required": ["call_id", "standard", "observations", "decisions"],

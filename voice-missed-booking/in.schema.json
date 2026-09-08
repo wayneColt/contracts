@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/wayneColt/wcm-contracts/voice-missed-booking/in.schema.json",
+  "$id": "https://github.com/wayneColt/contracts/voice-missed-booking/in.schema.json",
   "title": "voice-missed-booking · input · one recorded call",
   "type": "object",
   "required": ["call_id", "recording", "direction", "started_at", "duration_sec"],
