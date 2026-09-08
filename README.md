@@ -24,6 +24,9 @@ You cannot win a category. You can own a sentence that names constraints every i
 
 Each module is one such sentence. The other four are candidates until a runner has measured them.
 
+## The exploded diagram
+How the parts fit — the standard over the organs over the spine over the substrate — is drawn in [docs/EXPLODED_DIAGRAM.html](docs/EXPLODED_DIAGRAM.html).
+
 ## Rules that hold everywhere
 - **Rung 0:** no standard, no run. A module refuses to grade against a rubric that has not been written.
 - **Model observes, code decides.** Scores are observations; totals, outcomes and alerts are computed downstream and never asked of the model.
