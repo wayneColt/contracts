@@ -1,0 +1,14 @@
+# manifest.yaml — declared module. No runner has measured it yet; the contract files land when one has.
+module: document-fields-off-the-scan
+status: declared
+job: "pull the fields off the scan and tie them to something"
+in: "PDF or scan set"
+out: "extracted fields, cross-reference key"
+clock: "paused"
+substrate: "cpu-8, staged tensor for hard scans"
+packet:
+  conserved: "the target schema"
+  controllable: "the file set"
+  hidden: "which page holds the field"
+  noise: "scan quality"
+rung_0: "no standard, no run — the buyer writes the rubric before the module exists for them"

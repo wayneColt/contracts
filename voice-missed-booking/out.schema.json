@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/wayneColt/wcm-contracts/voice-missed-booking/out.schema.json",
+  "title": "voice-missed-booking · output · one grade",
+  "type": "object",
+  "required": ["call_id", "standard", "observations", "decisions"],
+  "properties": {
+    "call_id": { "type": "string" },
+    "standard": { "type": "string", "description": "the rubric name and version the grade was made against" },
+    "observations": {
+      "type": "object",
+      "description": "what the model reported; nothing here is a decision",
+      "required": ["greeting_score", "discovery_score", "action_score", "empathy_score", "qualified", "intake_outcome", "service_type", "hostility_flag", "strengths", "coaching_note"],
+      "properties": {
+        "greeting_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "discovery_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "action_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "empathy_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "qualified": { "type": "boolean" },
+        "intake_outcome": { "type": "string", "enum": ["Scheduled", "Will Call Back", "Pricing Concerns", "No Next Steps", "Not Qualified", "Complaint"] },
+        "service_type": { "type": "string" },
+        "hostility_flag": { "type": "boolean" },
+        "strengths": { "type": "string" },
+        "coaching_note": { "type": "string", "description": "one specific, actionable instruction; empty means nothing to coach" }
+      },
+      "additionalProperties": false
+    },
+    "decisions": {
+      "type": "object",
+      "description": "computed in code from the observations and the call metadata; the model never reports these",
+      "required": ["total_score", "call_outcome", "miss_type", "alert", "credited_to"],
+      "properties": {
+        "total_score": { "type": "integer", "minimum": 4, "maximum": 20 },
+        "call_outcome": { "type": "string", "enum": ["booked", "inquiry", "complaint", "lost_lead"] },
+        "miss_type": { "type": ["string", "null"], "enum": ["Will Call Back", "Pricing Concerns", "No Next Steps", null], "description": "why a qualified caller was not booked; null when booked or not a lead" },
+        "alert": { "type": ["object", "null"], "properties": { "code": { "type": "string", "enum": ["ESCALATION", "LOW_SCORE", "LOST_LEAD"] }, "reason": { "type": "string" } }, "required": ["code", "reason"] },
+        "credited_to": { "type": "string", "description": "the person, or Unassigned for a shared line or a blank answerer" },
+        "revenue": { "type": ["number", "string"], "description": "a number only when the buyer supplied a Value column; otherwise the string NO_SIGNAL" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

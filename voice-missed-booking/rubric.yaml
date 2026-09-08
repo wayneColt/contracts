@@ -1,0 +1,22 @@
+# rubric.yaml — the standard. The buyer writes it; the module will not run until it exists (Rung 0).
+# This file is an EXAMPLE standard in the shape the module accepts. Replace every line with your own words.
+standard:
+  name: example-service-shop-v1
+  authored_by: "the buyer"          # the name that signs; the module reports against this, never its own
+  version: 1
+coaching_rubric:                    # observations, scored 1..5 by the model
+  greeting_score: "stated the shop name, polite and branded introduction"
+  discovery_score: "asked clarifying questions, understood the customer's actual issue"
+  action_score: "attempted to book an appointment or recommend a relevant service"
+  empathy_score: "professional, patient, non-defensive tone throughout"
+intake_rules:                       # decisions, applied in code from what the model observed
+  qualified: "true when the caller has a service need the shop could schedule; false for wrong numbers, vendors, personal calls, spam"
+  outcomes: ["Scheduled", "Will Call Back", "Pricing Concerns", "No Next Steps", "Not Qualified", "Complaint"]
+  scheduled: "the intake outcome says Scheduled"
+  lost: "qualified and not Scheduled and not a Complaint"
+  unassigned: "a shared line or a blank answerer is never coached as a person"
+  revenue: "only from a real Value column the buyer supplies; never estimated from the call"
+alerts:                             # computed downstream; thresholds belong to the buyer
+  escalation: "customer hostile, threatened a review, or demanded a manager"
+  low_score_below: 12               # of 20
+  lost_lead_after_seconds: 180      # a qualified caller lost after three minutes of talk

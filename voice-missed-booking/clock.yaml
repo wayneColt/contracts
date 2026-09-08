@@ -1,0 +1,4 @@
+# clock.yaml — the field that sets the price, because it decides whether park is free.
+default: paused          # nightly batch; the module sleeps between batches and is not billed while asleep
+live:                    # a separate SKU: the world does not pause while we think, so we cannot sleep, so it costs more
+  grade_within_seconds: 120   # measured 2026-09-08: first grade landed within two minutes of hangup on a live line

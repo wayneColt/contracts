@@ -1,0 +1,7 @@
+{
+  "in": { "call_id": "example-0001", "recording": "https://example.com/recordings/example-0001.mp3", "direction": "Inbound", "started_at": "2026-09-08T14:02:11Z", "duration_sec": 214, "store": "STORE-A", "answered_by": "Alex Rivera", "standard": "example-service-shop-v1" },
+  "transcript_for_reference": "Thanks for calling the shop, this is Alex. — Hi, my check engine light came on this morning and the car is idling rough. — I can get you in for a diagnostic. Are you free tomorrow at 8? — Tomorrow at 8 works. — You're booked; bring the key fob and we'll call you by noon.",
+  "out": { "call_id": "example-0001", "standard": "example-service-shop-v1",
+    "observations": { "greeting_score": 5, "discovery_score": 4, "action_score": 5, "empathy_score": 4, "qualified": true, "intake_outcome": "Scheduled", "service_type": "diagnostic", "hostility_flag": false, "strengths": "Named the shop, asked what the car was doing, offered a specific time and booked it.", "coaching_note": "" },
+    "decisions": { "total_score": 18, "call_outcome": "booked", "miss_type": null, "alert": null, "credited_to": "Alex Rivera", "revenue": "NO_SIGNAL" } }
+}

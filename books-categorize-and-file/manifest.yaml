@@ -1,0 +1,14 @@
+# manifest.yaml — declared module. No runner has measured it yet; the contract files land when one has.
+module: books-categorize-and-file
+status: declared
+job: "categorize it and hand me a filing packet"
+in: "transaction feed"
+out: "categorized ledger, packet, open questions"
+clock: "paused"
+substrate: "cpu-8"
+packet:
+  conserved: "chart of accounts, or the tax code"
+  controllable: "the transaction feed"
+  hidden: "intent behind a transaction"
+  noise: "merchant name strings"
+rung_0: "no standard, no run — the buyer writes the rubric before the module exists for them"

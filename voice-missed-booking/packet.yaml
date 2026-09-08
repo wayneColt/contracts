@@ -1,0 +1,5 @@
+# packet.yaml — the four slots the buyer fills, in the buyer's words.
+conserved: "the script or rubric — the part that doesn't flex"
+controllable: "the recording feed — what the location controls"
+hidden: "customer intent — what we can't see today"
+noise: "audio quality, accents, hold music — variance we tolerate"

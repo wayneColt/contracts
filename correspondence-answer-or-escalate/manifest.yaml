@@ -1,0 +1,14 @@
+# manifest.yaml — declared module. No runner has measured it yet; the contract files land when one has.
+module: correspondence-answer-or-escalate
+status: declared
+job: "answer what can be answered, escalate what can't"
+in: "mailbox or thread"
+out: "classification, draft, escalation flag"
+clock: "paused with an SLA"
+substrate: "cpu-8"
+packet:
+  conserved: "the reply policy"
+  controllable: "the mailbox"
+  hidden: "sender intent"
+  noise: "threading and quoting"
+rung_0: "no standard, no run — the buyer writes the rubric before the module exists for them"

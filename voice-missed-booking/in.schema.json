@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/wayneColt/wcm-contracts/voice-missed-booking/in.schema.json",
+  "title": "voice-missed-booking · input · one recorded call",
+  "type": "object",
+  "required": ["call_id", "recording", "direction", "started_at", "duration_sec"],
+  "properties": {
+    "call_id": { "type": "string", "description": "the telephony session id; one grade per call, ever" },
+    "recording": { "type": "string", "format": "uri", "description": "a recording URL the module can fetch once; audio is transcribed and discarded, never stored" },
+    "direction": { "type": "string", "enum": ["Inbound", "Outbound"], "description": "KPIs count inbound only; outbound is graded for coaching and set aside" },
+    "started_at": { "type": "string", "format": "date-time" },
+    "duration_sec": { "type": "integer", "minimum": 0, "description": "from the phone system, never from the model; feeds the three-minute lost-lead rule" },
+    "store": { "type": "string", "description": "the location code as the buyer names it" },
+    "answered_by": { "type": ["string", "null"], "description": "extension or person as the phone system names it; blank or shared lines group as Unassigned" },
+    "standard": { "type": "string", "description": "the name and version of the rubric.yaml this call is graded against; absent means the module refuses (Rung 0)" }
+  },
+  "additionalProperties": false
+}
