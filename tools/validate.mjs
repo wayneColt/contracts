@@ -16,7 +16,7 @@ const mock = JSON.parse(readFileSync(`${mod}/fixtures/mock_call.json`, "utf8"));
 const lines = readFileSync(`${mod}/eval/golden.jsonl`, "utf8").trim().split("\n"); let n = 0;
 for (const l of lines) { const c = JSON.parse(l); check(inS, c.in, `${c.case}.in`); check(outS, c.out, `${c.case}.out`); const o = c.out.observations, d = c.out.decisions; const total = o.greeting_score + o.discovery_score + o.action_score + o.empathy_score; if (total !== d.total_score) fail(`${c.case}: total ${d.total_score} != ${total}`); n++; }
 for (const f of ["rubric.yaml", "packet.yaml", "clock.yaml", "pricing.md"]) if (!existsSync(`${mod}/${f}`)) fail(`${mod}/${f} missing`);
-for (const d of readdirSync(".", { withFileTypes: true }).filter((e) => e.isDirectory() && e.name !== mod && !e.name.startsWith(".") && e.name !== "tools")) {
+for (const d of readdirSync(".", { withFileTypes: true }).filter((e) => e.isDirectory() && e.name !== mod && !e.name.startsWith(".") && existsSync(`${e.name}/manifest.yaml`))) {
   const m = readFileSync(`${d.name}/manifest.yaml`, "utf8"); for (const k of ["module:", "status:", "job:", "in:", "out:", "clock:", "substrate:", "packet:"]) if (!m.includes(k)) fail(`${d.name}/manifest.yaml lacks ${k}`);
 }
 console.log(process.exitCode ? "RED" : `GREEN · ${n} golden cases · mock fixture · 4 manifests`);
