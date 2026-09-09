@@ -1,0 +1,5 @@
+# packet.yaml — the four slots the buyer fills, in the buyer's words.
+conserved: "the repair orders as written — the module never rewrites history"
+controllable: "the completed-repair-order export the shop already has: jobs, notes, flag hours, vehicle key, close date"
+hidden: "whether the past repair was correct — only that it was done, and whether the vehicle came back"
+noise: "note spelling, shop jargon, empty notes — variance the term weighting tolerates"

@@ -1,0 +1,4 @@
+# clock.yaml — the field that sets the price, because it decides whether park is free.
+default: paused          # answers when asked and sleeps otherwise; not billed while asleep
+answer_within_ms: 100    # measured 2026-08-07 at the edge on the deployed runner: 72.9 ms cold, 76.6 ms warm median, three samples
+live: none               # nothing waits on this module; there is no live SKU

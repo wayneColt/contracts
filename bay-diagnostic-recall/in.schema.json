@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/wayneColt/contracts/bay-diagnostic-recall/in.schema.json",
+  "title": "bay-diagnostic-recall · input · one question over the shop's own completed repair orders",
+  "type": "object",
+  "required": ["query", "rows"],
+  "properties": {
+    "query": { "type": "string", "description": "the complaint, symptom or system in the technician's words" },
+    "limit": { "type": "integer", "minimum": 1, "maximum": 50, "description": "hits to return; default 8" },
+    "stop_words": { "type": "array", "description": "shop jargon to ignore, from rubric.yaml retrieval.stop_words" },
+    "standard": { "type": "string", "description": "the name and version of the rubric.yaml this question is answered under; absent means the module refuses (Rung 0)" },
+    "rows": {
+      "type": "array",
+      "description": "completed repair orders for the period to search; they travel with the question and are never stored",
+      "items": {
+        "type": "object",
+        "required": ["repair_order_number", "jobs"],
+        "properties": {
+          "repair_order_number": { "type": ["string", "integer"] },
+          "vehicle_id": { "type": ["string", "integer", "null"], "description": "used to count return visits; never echoed raw" },
+          "completed_date": { "type": ["string", "null"], "description": "date or date-time the repair order closed" },
+          "miles_in": { "type": ["integer", "null"] },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": ["string", "null"] },
+                "category": { "type": ["string", "null"] },
+                "note": { "type": ["string", "null"], "description": "technician free text; redacted of VIN, phone, email before it is echoed" },
+                "labor_hours": { "type": "number" },
+                "labor_total": { "type": "number" },
+                "parts_total": { "type": "number" },
+                "technician_id": { "type": ["string", "integer", "null"] }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

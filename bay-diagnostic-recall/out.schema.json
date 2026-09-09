@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/wayneColt/contracts/bay-diagnostic-recall/out.schema.json",
+  "title": "bay-diagnostic-recall · output · ranked repair orders, or NO_SIGNAL with the question that unlocks it",
+  "type": "object",
+  "required": ["kind", "membrane", "reason", "fabricated"],
+  "properties": {
+    "kind": { "type": "string", "enum": ["bay_diagnostic_recall"] },
+    "standard": { "type": ["string", "null"], "description": "the rubric this answer was produced under" },
+    "query": { "type": "string" },
+    "query_terms": { "type": "array", "description": "the searchable terms after stop words; what the ranking actually used" },
+    "corpus_jobs": { "type": "integer", "minimum": 0 },
+    "corpus_repair_orders": { "type": "integer", "minimum": 0 },
+    "matches_found": { "type": "integer", "minimum": 0 },
+    "returned": { "type": "integer", "minimum": 0 },
+    "hits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["score", "terms_matched", "repair_order", "job", "vehicle_return_visits", "vehicle_returned"],
+        "properties": {
+          "score": { "type": "number", "minimum": 0 },
+          "terms_matched": { "type": "integer", "minimum": 1 },
+          "repair_order": { "type": ["string", "integer", "null"], "description": "the repair order the technician opens to check the hit" },
+          "job": { "type": ["string", "null"] },
+          "category": { "type": ["string", "null"] },
+          "note": { "type": ["string", "null"], "description": "the technician note, redacted" },
+          "flag_hours": { "type": "number" },
+          "labor": { "type": "number" },
+          "parts": { "type": "number" },
+          "technician_id": { "type": ["string", "integer", "null"] },
+          "completed": { "type": ["string", "null"] },
+          "miles_in": { "type": ["integer", "null"] },
+          "vehicle_return_visits": { "type": "integer", "minimum": 0, "description": "distinct close dates for that vehicle in the rows supplied" },
+          "vehicle_returned": { "type": "boolean", "description": "true when the vehicle closed another repair order — a pair to read, never fault to assign" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "membrane": { "type": "string", "enum": ["VERIFIED", "NO_SIGNAL"] },
+    "reason": { "type": "string" },
+    "ask": {
+      "type": "object",
+      "properties": { "question": { "type": "string" }, "who": { "type": "string" }, "unlocks": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "proves": { "type": "string" },
+    "blind": { "type": "string" },
+    "law": { "type": "string" },
+    "fabricated": { "type": "boolean", "enum": [false] }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+# rubric.yaml — the standard. The buyer writes it; the module will not run until it exists (Rung 0).
+# This file is an EXAMPLE standard in the shape the module accepts. Replace every line with your own words.
+standard:
+  name: example-shop-recall-v1
+  authored_by: "the buyer"          # the name that signs; the module reports against this, never its own
+  version: 1
+field_map:                          # where each fact lives in the buyer's export; an unmapped field is NO_SIGNAL, never a guess
+  repair_order_number: "the RO number a technician can open"
+  vehicle_id: "the vehicle key the export carries; used only to count return visits, never echoed raw"
+  completed_date: "the date the repair order closed"
+  miles_in: "odometer at write-up"
+  jobs.name: "the job line as written"
+  jobs.category: "the job category as the shop labels it"
+  jobs.note: "the technician note, free text"
+  jobs.labor_hours: "flag hours"
+  jobs.labor_total: "labor dollars as written"
+  jobs.parts_total: "parts dollars as written"
+  jobs.technician_id: "the technician key, echoed as the export carries it"
+retrieval:
+  weighting: "term rarity over this shop's own rows only; a term that appears in every job carries no weight"
+  stop_words: []                    # shop jargon that carries no signal; the buyer adds it here
+  limit_default: 8
+  limit_max: 50
+comeback:
+  counted_as: "the same vehicle closed another repair order on a later date"
+  reported_per_hit: "vehicle_return_visits and vehicle_returned — a return is a pair to read, never fault to assign"
+redact:                             # applied to every free-text field before it is echoed
+  vin: true
+  phone: true
+  email: true
+refusals:
+  no_standard: "no standard, no run"
+  no_rows: "the module holds no shop data; the rows travel with the question"
+  no_terms: "a query with no searchable term after stop words answers NO_SIGNAL"
